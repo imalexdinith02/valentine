@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>💖 Valentine Surprise 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink:#ff5fa2;
+      --pink-soft:#ffe3ef;
+      --bg1:#0f0c29;
+      --bg2:#302b63;
+      --bg3:#24243e;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      color: white;
+    }
+
+    /* glowing background particles */
+    .bg-hearts span {
+      position: absolute;
+      font-size: 18px;
+      opacity: 0.25;
+      animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(110vh) scale(0.6); }
+      to { transform: translateY(-10vh) scale(1.2); }
+    }
+
+    .card {
+      width: min(92vw, 460px);
+      padding: 28px 24px 34px;
+      border-radius: 32px;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+      text-align: center;
+      position: relative;
+    }
+
+    h1 {
+      font-weight: 800;
+      margin: 0 0 10px;
+      font-size: 1.9rem;
+      background: linear-gradient(90deg, #ff8ccf, #ffc2df);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p {
+      opacity: 0.9;
+      margin: 0 0 22px;
+    }
+
+    /* CARTOON PIG */
+    .pig {
+      width: 160px;
+      height: 160px;
+      margin: 0 auto 10px;
+      position: relative;
+      animation: idle 4s ease-in-out infinite;
+    }
+
+    @keyframes idle {
+      0%,100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(1deg); }
+    }
+
+    .pig-body {
+      background: linear-gradient(145deg, #ffb6d5, #ff8fc2);
+      width: 140px;
+      height: 110px;
+      border-radius: 70px;
+      position: absolute;
+      bottom: 0;
+      left: 10px;
+      box-shadow: inset 0 -6px 12px rgba(0,0,0,0.15);
+    }
+
+    .pig-ear {
+      width: 36px;
+      height: 36px;
+      background: #ff9acb;
+      position: absolute;
+      top: 6px;
+      border-radius: 50% 50% 0 0;
+      animation: earWiggle 2.5s ease-in-out infinite;
+    }
+
+    .ear-left { left: 20px; transform: rotate(-20deg); }
+    .ear-right { right: 20px; transform: rotate(20deg); animation-delay: 1.2s; }
+
+    @keyframes earWiggle {
+      0%,100% { transform: rotate(0deg); }
+      50% { transform: rotate(12deg); }
+    }
+
+    .pig-eye {
+      width: 10px;
+      height: 10px;
+      background: #333;
+      border-radius: 50%;
+      position: absolute;
+      top: 45px;
+      animation: blink 4s infinite;
+    }
+
+    .eye-left { left: 52px; }
+    .eye-right { right: 52px; }
+
+    @keyframes blink {
+      0%,95%,100% { transform: scaleY(1); }
+      97% { transform: scaleY(0.1); }
+    }
+
+    .snout {
+      width: 46px;
+      height: 34px;
+      background: #ff7fb8;
+      border-radius: 20px;
+      position: absolute;
+      top: 58px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .snout::before,
+    .snout::after {
+      content: '';
+      width: 6px;
+      height: 10px;
+      background: #d85c93;
+      border-radius: 50%;
+      position: absolute;
+      top: 10px;
+    }
+
+    .snout::before { left: 12px; }
+    .snout::after { right: 12px; }
+
+    .buttons {
+      position: relative;
+      height: 140px;
+      margin-top: 18px;
+    }
+
+    button {
+      border: none;
+      padding: 14px 30px;
+      border-radius: 999px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      position: absolute;
+    }
+
+    #yesBtn {
+      background: linear-gradient(135deg, #ff4fa1, #ff89c7);
+      color: white;
+      box-shadow: 0 15px 40px rgba(255,79,161,0.6);
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    #noBtn {
+      background: rgba(255,255,255,0.85);
+      color: #444;
+      left: 50%;
+      top: 90%;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .success {
+      display: none;
+      margin-top: 22px;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #ff9fd2;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-hearts"></div>
+
+  <div class="card">
+
+    <div class="pig">
+      <div class="pig-ear ear-left"></div>
+      <div class="pig-ear ear-right"></div>
+      <div class="pig-body"></div>
+      <div class="pig-eye eye-left"></div>
+      <div class="pig-eye eye-right"></div>
+      <div class="snout"></div>
+    </div>
+
+    <h1>Will you be my Valentine?</h1>
+    <p>I coded this pig just to ask you 💕</p>
+
+    <div class="buttons">
+      <button id="yesBtn">YES 💖</button>
+      <button id="noBtn">no 🙃</button>
+    </div>
+
+    <div class="success" id="successMsg">SHE SAID YES 😭💘<br>Best. Valentine. Ever.</div>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const successMsg = document.getElementById('successMsg');
+    const bg = document.querySelector('.bg-hearts');
+
+    let yesScale = 1;
+    let noScale = 1;
+
+    // background hearts
+    for (let i = 0; i < 18; i++) {
+      const h = document.createElement('span');
+      h.textContent = '💖';
+      h.style.left = Math.random() * 100 + '%';
+      h.style.animationDuration = 6 + Math.random() * 6 + 's';
+      bg.appendChild(h);
+    }
+
+    function moveNo() {
+      const card = document.querySelector('.card');
+      const r = card.getBoundingClientRect();
+      noBtn.style.left = Math.random() * (r.width - 80) + 'px';
+      noBtn.style.top = Math.random() * (r.height - 160) + 'px';
+    }
+
+    function dodge() {
+      moveNo();
+      yesScale += 0.18;
+      noScale -= 0.1;
+      yesBtn.style.transform = `translate(-50%, -50%) scale(${yesScale})`;
+      noBtn.style.transform = `translate(-50%, -50%) scale(${Math.max(noScale, 0.35)})`;
+    }
+
+    noBtn.addEventListener('mouseenter', dodge);
+    noBtn.addEventListener('touchstart', dodge);
+
+    yesBtn.addEventListener('click', () => {
+      successMsg.style.display = 'block';
+      yesBtn.style.display = 'none';
+      noBtn.style.display = 'none';
+    });
+  </script>
+
+</body>
+</html>
